@@ -28,7 +28,7 @@ class MonthlyAppointment < Appointment
     end
     
     def to_s
-        puts "Reunión mensual en #{self.locate} sobre #{self.purpose} a las #{self.hour}:#{self.min}"
+        "Reunión única mensual en #{self.location} sobre #{self.purpose} a las #{self.hour}:#{self.min}"
     end
     
 end
@@ -36,19 +36,22 @@ end
 class DailyAppointment < Appointment
     def occurs_on?(otherhour,min)
         if self.hour == otherhour && self.min == othermin
+            true
+        else
+            false
+        end
     end
     
     def to_s
-        puts "Reunión diaria en #{self.location} sobre #{self.purpose} a la(s) #{self.hour}:#{self.min}."     
+        "Reunión diaria en #{self.location} sobre #{self.purpose} a la(s) #{self.hour}:#{self.min}."     
     end
-    
 end
 
 class OneTimeAppointment < Appointment
 
     attr_accessor :day, :month, :year
 
-    def initialize(day,month,year,location,purpose,hour,min)
+    def initialize(location,purpose,hour,min,day,month,year)
         super(location,purpose,hour,min)
         @day = day
         @month = month
@@ -64,12 +67,12 @@ class OneTimeAppointment < Appointment
     end
 
     def to_s
-        puts "Reunión mensual en #{self.location} sobre #{self.purpose} el #{self.day}/#{self.month}/#{year}."
+        "Reunión mensual en #{self.location} sobre #{self.purpose} el #{self.day}/#{self.month}/#{year}."
     end
     
 
 end
 
 puts OneTimeAppointment.new('Desafío Latam', 'Trabajo', 14, 30, 4, 6, 2019)
-#puts DailyAppointment.new('Desafío Latam', 'Educación', 8, 15)
-#puts MonthlyAppointment.new('NASA', 'Aliens', 8, 15, 23)
+puts DailyAppointment.new('Desafío Latam', 'Educación', 8, 15)
+puts MonthlyAppointment.new('NASA', 'Aliens', 8, 15, 23)
