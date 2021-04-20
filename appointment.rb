@@ -28,7 +28,7 @@ class MonthlyAppointment < Appointment
     end
     
     def to_s
-        "Reunión única mensual en #{self.location} sobre #{self.purpose} a las #{self.hour}:#{self.min}"
+        "Reunión mensual en #{self.location} sobre #{self.purpose} el dia #{self.day} a las #{self.hour}:#{self.min}."
     end
     
 end
@@ -67,7 +67,7 @@ class OneTimeAppointment < Appointment
     end
 
     def to_s
-        "Reunión mensual en #{self.location} sobre #{self.purpose} el #{self.day}/#{self.month}/#{year}."
+        "Reunión única en #{self.location} sobre #{self.purpose} el #{self.day}/#{self.month}/#{year} a las #{self.hour}:#{self.min}."
     end
     
 
